@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Brother</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  color:#fff;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(0,180,255,.16),transparent 30%),
+    radial-gradient(circle at 85% 75%,rgba(120,70,255,.18),transparent 30%),
+    #05070c;
+  overflow-x:hidden;
+}
+
+.container{
+  width:min(92%,900px);
+  margin:auto;
+  position:relative;
+  z-index:2;
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.glass{
+  padding:55px 28px;
+  width:100%;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:30px;
+  background:rgba(255,255,255,.045);
+  backdrop-filter:blur(18px);
+  box-shadow:0 25px 80px rgba(0,0,0,.5);
+}
+
+.label{
+  color:#62c9ff;
+  letter-spacing:5px;
+  font-size:12px;
+  margin-bottom:20px;
+  text-transform:uppercase;
+}
+
+h1{
+  font-size:clamp(48px,12vw,90px);
+  line-height:1;
+  margin-bottom:25px;
+  background:linear-gradient(90deg,#fff,#62c9ff,#9b7cff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.typing{
+  min-height:70px;
+  color:#cdd4df;
+  font-size:clamp(18px,4vw,24px);
+  line-height:1.6;
+}
+
+.cursor{
+  display:inline-block;
+  height:24px;
+  width:2px;
+  background:#62c9ff;
+  animation:blink .7s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:0}
+}
+
+.btn{
+  margin-top:35px;
+  padding:15px 30px;
+  border:0;
+  border-radius:50px;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  background:linear-gradient(90deg,#087cff,#7048ff);
+  box-shadow:0 10px 35px rgba(30,120,255,.3);
+  transition:.3s;
+}
+
+.btn:hover{
+  transform:translateY(-4px) scale(1.03);
+}
+
+.section{
+  padding:90px 0;
+}
+
+.title{
+  text-align:center;
+  font-size:38px;
+  margin-bottom:12px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#7f8998;
+  margin-bottom:40px;
+}
+
+.message{
+  padding:35px;
+  border-radius:25px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.09);
+  color:#c9d0da;
+  line-height:1.9;
+  font-size:17px;
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.card{
+  padding:30px 20px;
+  text-align:center;
+  border-radius:22px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  transition:.35s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  background:rgba(255,255,255,.07);
+}
+
+.number{
+  font-size:28px;
+  color:#5dbfff;
+  margin-bottom:15px;
+}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#8993a2;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.final{
+  text-align:center;
+  padding:110px 0 80px;
+}
+
+.final h2{
+  font-size:clamp(40px,9vw,70px);
+  background:linear-gradient(90deg,#58c7ff,#987cff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:20px;
+}
+
+.final p{
+  max-width:650px;
+  margin:auto;
+  color:#9099a7;
+  line-height:1.8;
+}
+
+.hidden{
+  max-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:1s ease;
+}
+
+.hidden.show{
+  max-height:500px;
+  opacity:1;
+  margin-top:30px;
+}
+
+footer{
+  text-align:center;
+  color:#4e5662;
+  padding:30px;
+  font-size:12px;
+}
+
+/* Floating particles */
+
+.particle{
+  position:fixed;
+  bottom:-20px;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:#61c7ff;
+  opacity:0;
+  pointer-events:none;
+  animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+  0%{
+    transform:translateY(0);
+    opacity:0;
+  }
+  15%{
+    opacity:.7;
+  }
+  100%{
+    transform:translateY(-110vh);
+    opacity:0;
+  }
+}
+
+@media(max-width:700px){
+
+  .glass{
+    padding:45px 20px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .message{
+    padding:25px 20px;
+  }
+
+  .section{
+    padding:65px 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="glass">
+
+      <div class="label">
+        A Message For My Brother
+      </div>
+
+      <h1>MY BRO</h1>
+
+      <div class="typing">
+        <span id="typing"></span>
+        <span class="cursor"></span>
+      </div>
+
+      <button class="btn" onclick="openMessage()">
+        Open Message
+      </button>
+
+      <div id="hidden" class="hidden">
+
+        <div class="message">
+
+          Bhai mane shudhu ekta relation na,
+          ekta solid support system.
+
+          <br><br>
+
+          Majhe majhe jhogra hobe,
+          ekjon arekjonke irritate korbe,
+          kintu proyojoner shomoy
+          bhai-er pashe bhai thakbei.
+
+          <br><br>
+
+          Tui jekhanei thakish,
+          joto durei jaash,
+          amar kache tui always amar bhai.
+
+          <br><br>
+
+          Stay strong. Stay happy.
+          Ar nijer life-e onek boro kichu kor.
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BROTHER BOND -->
+
+  <section class="section">
+
+    <h2 class="title">
+      Brother Bond
+    </h2>
+
+    <p class="subtitle">
+      Kichu relation explain kora jay na.
+    </p>
+
+    <div class="cards">
+
+      <div class="card">
+
+        <div class="number">01</div>
+
+        <h3>Support</h3>
+
+        <p>
+          Duniya-r shobai na bujhleo,
+          bhai onek shomoy bujhe jay.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="number">02</div>
+
+        <h3>Memories</h3>
+
+        <p>
+          Choto choto jhogra,
+          hashi ar crazy moments —
+          egulai ekdin best memory hobe.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="number">03</div>
+
+        <h3>Always</h3>
+
+        <p>
+          Somoy bodlabe,
+          life bodlabe,
+          kintu bhai-er bond alada thakbe.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FINAL -->
+
+  <section class="final">
+
+    <h2>Stay Strong, Bro.</h2>
+
+    <p>
+      Life-e onek ups and downs ashbe.
+      Kintu nijer upor trust rakhish.
+
+      <br><br>
+
+      Nijer dream-er pichone dourabi,
+      fail hole abar try korbi,
+      ar kokhono easily give up korbi na.
+
+      <br><br>
+
+      One day,
+      amra ei din gula mone kore bolbo —
+      "Dekh, amra actually onek dur eshe gechi."
+    </p>
+
+  </section>
+
+</div>
+
+
+<footer>
+  Made for a brother who deserves the best.
+</footer>
+
+
+<script>
+
+/* Typing animation */
+
+const texts = [
+  "Bhai mane just ekta word na...",
+  "Bhai mane ekta lifetime bond.",
+  "Jhogra hobe, moja hobe, abar thik-o hoye jabe.",
+  "Because at the end of the day... brothers stay."
+];
+
+let textIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+const typing = document.getElementById("typing");
+
+function typeText(){
+
+  const current = texts[textIndex];
+
+  if(!deleting){
+
+    typing.textContent =
+      current.substring(0,charIndex + 1);
+
+    charIndex++;
+
+    if(charIndex === current.length){
+
+      deleting = true;
+
+      setTimeout(typeText,1700);
+
+      return;
+    }
+
+  }else{
+
+    typing.textContent =
+      current.substring(0,charIndex - 1);
+
+    charIndex--;
+
+    if(charIndex === 0){
+
+      deleting = false;
+
+      textIndex++;
+
+      if(textIndex >= texts.length){
+        textIndex = 0;
+      }
+    }
+  }
+
+  setTimeout(typeText,deleting ? 35 : 65);
+}
+
+typeText();
+
+
+/* Open message */
+
+function openMessage(){
+
+  const hidden =
+    document.getElementById("hidden");
+
+  hidden.classList.toggle("show");
+
+  createParticles(20);
+
+}
+
+
+/* Floating particles */
+
+function createParticle(){
+
+  const particle =
+    document.createElement("div");
+
+  particle.className="particle";
+
+  particle.style.left =
+    Math.random()*100+"vw";
+
+  particle.style.animationDuration =
+    (5 + Math.random()*6)+"s";
+
+  document.body.appendChild(particle);
+
+  setTimeout(()=>{
+    particle.remove();
+  },11000);
+}
+
+
+function createParticles(amount){
+
+  for(let i=0;i<amount;i++){
+
+    setTimeout(()=>{
+      createParticle();
+    },i*100);
+
+  }
+
+}
+
+setInterval(createParticle,900);
+
+</script>
+
+</body>
+</html>
